@@ -1,7 +1,11 @@
 package com.spring.mapper;
 
 import com.spring.pojo.Roles;
+import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
+@Repository
 public interface RolesMapper {
     int deleteByPrimaryKey(String id);
 
@@ -14,4 +18,7 @@ public interface RolesMapper {
     int updateByPrimaryKeySelective(Roles record);
 
     int updateByPrimaryKey(Roles record);
+
+    List<Roles> selectRoles();
+
 }

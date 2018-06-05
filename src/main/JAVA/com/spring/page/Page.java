@@ -22,8 +22,14 @@ public class Page {
         this.msg = msg;
     }
 
-    public Page(Integer code, Object data) {
+    public Page( Object data,Integer code) {
         this.code = code;
+        this.data = data;
+    }
+
+    public Page(Integer code, long count, Object data) {
+        this.code = code;
+        this.count = count;
         this.data = data;
     }
 
