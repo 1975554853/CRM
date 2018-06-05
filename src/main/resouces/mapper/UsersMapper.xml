@@ -150,4 +150,8 @@
       CreateTime = #{createtime,jdbcType=TIMESTAMP}
     where Id = #{id,jdbcType=VARCHAR}
   </update>
+
+  <select id="selectUsersCondition" resultMap="BaseResultMap">
+        select * from users
+  </select>
 </mapper>
