@@ -26,7 +26,7 @@ public class LoginControl {
     @RequestMapping(value = "/login" , method = RequestMethod.POST)
     public Page login(String userName , String passWord){
         Users users = loginService.selectOneUser(userName , passWord);
-//        System.out.println(users);
+        System.out.println(users);
         if (users == null){
             return new Page(404 , "用户名或密码错误");
         }
