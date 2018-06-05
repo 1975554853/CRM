@@ -62,7 +62,7 @@
     <aop:config>
 <!--&lt;!&ndash;//切入点&ndash;&gt;-->
         <aop:pointcut id="stuService" expression="execution(* com.spring.service.*(..))"/>
-        <aop:advisor advice-ref="txAdvice" pointcut-ref="stuService" order="2"/>
+        <!--<aop:advisor advice-ref="txAdvice" pointcut-ref="stuService" order="2"/>-->
        <!--&lt;!&ndash;切入方式&ndash;&gt;-->
         <!--<aop:aspect ref="logAsp">-->
             <!--<aop:before method="before" pointcut-ref="stuService"/>-->
