@@ -79,4 +79,7 @@
       String0 = #{string0,jdbcType=VARCHAR}
     where Id = #{id,jdbcType=VARCHAR}
   </update>
+  <select id="selectRoles" resultMap="BaseResultMap">
+    select * from roles
+  </select>
 </mapper>
