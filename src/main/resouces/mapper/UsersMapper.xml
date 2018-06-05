@@ -23,6 +23,11 @@
     from users
     where Id = #{id,jdbcType=VARCHAR}
   </select>
+
+  <select id="selectOneUser" resultMap="BaseResultMap">
+    select * from users where LoginName = #{userName} and Password = #{password}
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from users
     where Id = #{id,jdbcType=VARCHAR}

@@ -102,4 +102,20 @@ public class Users {
     public void setCreatetime(Date createtime) {
         this.createtime = createtime;
     }
+
+    @Override
+    public String toString() {
+        return "Users{" +
+                "id='" + id + '\'' +
+                ", loginname='" + loginname + '\'' +
+                ", password='" + password + '\'' +
+                ", islockout='" + islockout + '\'' +
+                ", lastlogintime=" + lastlogintime +
+                ", psdwrongtime=" + psdwrongtime +
+                ", locktime=" + locktime +
+                ", protectemail='" + protectemail + '\'' +
+                ", protectmtel='" + protectmtel + '\'' +
+                ", createtime=" + createtime +
+                '}';
+    }
 }

@@ -13,9 +13,9 @@ public class Page {
         this.count = pageInfo.getTotal();
         this.code = code;
     }
-public Page(){
+    public Page(){
 
-}
+    }
 
     public Page(Integer code, String msg) {
         this.code = code;
