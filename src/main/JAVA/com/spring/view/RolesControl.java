@@ -17,18 +17,33 @@ public class RolesControl {
     @Autowired
     RolesService rolesService;
 
+    /**
+     * 查询所有的角色，并返回
+     * @param page
+     * @param limit
+     * @return
+     */
     @GetMapping(value = "selectRoles",name = "查询角色")
     public Page selectRoles(Integer page,Integer limit){
         return rolesService.selectRoles(page,limit);
 
     }
+
+    /**
+     * 创建角色，返回一个布尔值
+     * @param roles
+     * @return
+     */
     @GetMapping(value = "insertRoles", name = "创建角色")
-    public boolean insertRoles(@RequestParam("Roles") List<Roles> Roles){
-        Integer i = rolesService.insertRoles(Roles);
+    public boolean insertRoles(Roles roles){
+
+        Integer i = rolesService.insertRoles(roles);
         if (i!=0){
             return true;
         }else {
             return false;
         }
+
     }
+
 }

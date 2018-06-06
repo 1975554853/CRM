@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class RolesService {
@@ -23,10 +24,11 @@ public class RolesService {
 
     }
 
-    public Integer insertRoles(List<Roles> roles) {
-        for (Roles r:roles) {
-            rolesMapper.insert(r);
-        }
-       return 0;
+    public Integer insertRoles(Roles roles) {
+            UUID uuid = UUID.randomUUID();
+            roles.setId(String.valueOf(uuid));
+           Integer i = rolesMapper.insert(roles);
+
+       return i;
     }
 }
