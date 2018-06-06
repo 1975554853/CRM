@@ -192,5 +192,13 @@
         where LoginName=#{loginname}
     </update>
 
+    <update id="updateUsersPassword">
+        update users set Password="ysd123" where LoginName=#{loginname}
+    </update>
+
+    <update id="IsLockoutUsers">
+        update users set IsLockout=#{IsLockout} where LoginName=#{loginname}
+    </update>
+
 
 </mapper>

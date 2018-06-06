@@ -63,4 +63,24 @@ public class UsersService {
         return n;
     }
 
+    public Integer updateUsersPassword(String loginname){
+        Integer n=0;
+        n=mapper.updateUsersPassword(loginname);
+        return n;
+    }
+
+    public Integer lockingUsers(String loginname){
+        Integer n=0;
+        String locking="是";
+        n=mapper.IsLockoutUsers(loginname,locking);
+        return n;
+    }
+
+    public Integer unlockingUsers(String loginname){
+        Integer n=0;
+        String locking="否";
+        n=mapper.IsLockoutUsers(loginname,locking);
+        return n;
+    }
+
 }

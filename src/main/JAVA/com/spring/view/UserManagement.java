@@ -25,7 +25,7 @@ public class UserManagement {
      * 查询条件包括：用户名、创建起止时间,创建结束时间、是否锁定（1：是；2：否）、排序（创建时间、最后登录时间）
      * @param page 页码
      * @param limit 显示数据条数
-     * @param loginname 用户名
+     * @param loginname 查询的用户名
      * @param starttime 创建起止时间
      * @param endtime 创建结束时间
      * @param islockout 是否锁定
@@ -44,7 +44,7 @@ public class UserManagement {
     /**
      *创建用户信息：
      * 字段包括：登录名、密码、邮箱、手机号码（注：用户登录名不能相同）
-     * @param loginname 登录名
+     * @param loginname 新用户的登录名
      * @param password 密码
      * @param protectemail 邮箱
      * @param protectmtel 手机号码
@@ -80,7 +80,7 @@ public class UserManagement {
 
     /**
      * 删除用户信息
-     * @param loginname 登录名
+     * @param loginname 删除的用户的登录名
      * @return 返回数据
      */
     @GetMapping(value ="/deleteUsersLoginname",name = "删除用户")
@@ -100,12 +100,9 @@ public class UserManagement {
     }
 
     /**
-     * 编辑用户信息：编辑页显示字段：登录名（只能显示不能编辑）、邮箱、手机号码
-     */
-    /**
      * 编辑用户信息：
      * 编辑页显示字段：登录名（只能显示不能编辑）、邮箱、手机号码
-     * @param loginname 登录名
+     * @param loginname 编辑的用户的登录名
      * @param protectemail 邮箱
      * @param protectmtel 手机号码
      * @return 返回数据
@@ -125,4 +122,75 @@ public class UserManagement {
             return pages;
         }
     }
+
+    /**
+     * 重置密码：重置之后的密码为ysd123
+     */
+
+    /**
+     * 重置密码：
+     * 重置之后的密码为ysd123
+     * @param loginname 重置的用户的登录名
+     * @return 返回数据
+     */
+    @GetMapping(value = "updateUsersPassword",name = "重置密码")
+    public Page updateUsersPassword(String loginname){
+        Page pages=new Page();
+
+        Integer n=usersService.updateUsersPassword(loginname);
+        if(n>0){
+            pages.setCode(100);
+            pages.setMsg("重置成功");
+            return pages;
+        }else{
+            pages.setCode(101);
+            pages.setMsg("重置失败");
+            return pages;
+        }
+    }
+
+    /**
+     * 锁定用户：
+     * 锁定之后的用户不能进行登录操作
+     * @param loginname 锁定的用户的登录名
+     * @return 返回数据
+     */
+    @GetMapping(value = "lockingUsers",name = "锁定用户")
+    public Page lockingUsers(String loginname){
+        Page pages=new Page();
+
+        Integer n=usersService.lockingUsers(loginname);
+        if(n>0){
+            pages.setCode(100);
+            pages.setMsg("重锁定成功");
+            return pages;
+        }else{
+            pages.setCode(101);
+            pages.setMsg("锁定失败");
+            return pages;
+        }
+    }
+
+    /**
+     *解锁用户：
+     * 对已锁定的用户进行解锁操作使其能够进行系统的登录操作
+     * @param loginname 解定的用户的登录名
+     * @return 返回数据
+     */
+    @GetMapping(value = "unlockingUsers",name = "解锁用户")
+    public Page unlockingUsers(String loginname){
+        Page pages=new Page();
+
+        Integer n=usersService.unlockingUsers(loginname);
+        if(n>0){
+            pages.setCode(100);
+            pages.setMsg("解锁成功");
+            return pages;
+        }else{
+            pages.setCode(101);
+            pages.setMsg("解锁失败");
+            return pages;
+        }
+    }
+
 }
