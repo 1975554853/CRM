@@ -22,6 +22,16 @@ public interface UsersMapper {
 
     Users selectOneUser(@Param("userName") String userName, @Param("password") String password);
 
-    List<Users> selectUsersCondition(String loginname, String starttime, String endtime, String islockout, String sort);
+    List<Users> selectUsersCondition(@Param("loginname") String loginname,@Param("starttime") String starttime,
+                                     @Param("endtime") String endtime,@Param("islockout") String islockout,
+                                     @Param("sort") String sort);
+
+    List<Users> selectUsersLoginname(String loginname);
+
+    Integer insertUsers(Users users);
+
+    Integer deleteUsersLoginname(String loginname);
+
+    Integer updateUsers(@Param("loginname") String loginname,@Param("protectemail")String protectemail,@Param("protectmtel")String protectmtel);
 
 }

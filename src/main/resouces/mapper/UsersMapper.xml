@@ -161,7 +161,36 @@
   </update>
 
   <select id="selectUsersCondition" resultMap="BaseResultMap">
-        select * from users
+        select * from users where 1=1
+      <if test="loginname!=null">and LoginName=#{loginname}</if>
+    <if test="starttime!=null">and CreateTime &gt;= #{starttime}</if>
+    <if test="endtime!=null">and CreateTime &lt;= #{endtime}</if>
+    <if test="islockout!=null">and IsLockout=#{islockout}</if>
+    <if test="sort!=null">order by #{sort}</if>
   </select>
+
+    <select id="selectUsersLoginname" resultMap="BaseResultMap">
+        select * from users where  LoginName=#{loginname}
+    </select>
+
+    <insert id="insertUsers" parameterType="com.spring.pojo.Users">
+        insert into users values
+        (#{id}, #{loginname}, #{password},"否", now(), 0,null, #{protectemail}, #{protectmtel}, now())
+    </insert>
+
+    <delete id="deleteUsersLoginname">
+        delete from users where LoginName=#{loginname}
+    </delete>
+
+    <update id="updateUsers">
+        update users set
+        <if test="protectemail!=null">ProtectEMail = #{protectemail}</if>
+        <if test="protectemail!=null">
+            <if test="protectmtel!=null">,</if>
+        </if>
+        <if test="protectmtel!=null">protectMTel = #{protectmtel}</if>
+        where LoginName=#{loginname}
+    </update>
+
 
 </mapper>
