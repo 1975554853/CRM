@@ -21,4 +21,5 @@ public interface RolesMapper {
 
     List<Roles> selectRoles();
 
+    Integer deleteRole(String name);
 }

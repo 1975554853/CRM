@@ -36,14 +36,24 @@ public class RolesControl {
      */
     @GetMapping(value = "insertRoles", name = "创建角色")
     public boolean insertRoles(Roles roles){
-
         Integer i = rolesService.insertRoles(roles);
         if (i!=0){
             return true;
         }else {
             return false;
         }
-
     }
-
+    /**
+     * 删除角色
+     */
+     @GetMapping(value ="deleteRole",name = "删除角色")
+     public boolean deleteRole(String name){
+         System.out.println(name);
+         Integer i = rolesService.deleteRole(name);
+         if (i!=0){
+             return true;
+         }else {
+             return false;
+         }
+     }
 }

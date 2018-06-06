@@ -82,4 +82,7 @@
   <select id="selectRoles" resultMap="BaseResultMap">
     select * from roles
   </select>
+  <delete id="deleteRole" parameterType="java.lang.String">
+    delete from roles where name = #{name}
+  </delete>
 </mapper>
