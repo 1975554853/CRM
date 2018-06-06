@@ -1,6 +1,9 @@
 package com.spring.view;
 
+import com.spring.annotation.Annotation;
 import com.spring.auth.SystemUtil;
+import com.spring.auth.token.JSON_WEB_TOKEN;
+import com.spring.auth.token.Token;
 import com.spring.mapper.ModulesMapper;
 import com.spring.page.Page;
 import com.spring.pojo.Modules;
@@ -10,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 @CrossOrigin
@@ -26,14 +30,18 @@ public class LoginControl {
     @Autowired
     HttpSession session;
 
+    @Autowired
+    Token tokenUtli;
+
     /**
      * 进行用户的登陆
      * @param userName 前台传入的用户名
      * @param passWord 前台传入的棉麻
      * @return 回馈给前台的信息
      */
+    @Annotation(desc = "进行登陆的权限")
     @RequestMapping(value = "/login" , method = RequestMethod.POST)
-    public Page login(@RequestParam("userName") String userName ,@RequestParam("passWord") String passWord){
+    public Page login(@RequestParam("userName") String userName ,@RequestParam("passWord") String passWord) throws UnsupportedEncodingException {
         Users name = loginService.selectUserName(userName);
 
         if (name == null){
@@ -49,17 +57,22 @@ public class LoginControl {
         }
 
         List<Modules> modules = modulesMapper.selectUserModules(userName , passWord);
-        session.setAttribute(SystemUtil.USER_MODULES , modules);
+//        session.setAttribute(SystemUtil.USER_MODULES , modules);
+
+        JSON_WEB_TOKEN json_web_token = new JSON_WEB_TOKEN();
+        json_web_token.setData(modules);
+//        System.out.println(">>>>"+modules);
 
         Page result = new Page(666 , "登陆成功");
-        result.setData(modules);
+        result.setData(tokenUtli.createToken(json_web_token , 12*60*60*1000));
         return result;
     }
 
     @RequestMapping(value = "/index" , method = RequestMethod.POST)
-    public Page showModules(){
-        List<Modules> modules = (List<Modules>) session.getAttribute(SystemUtil.USER_MODULES);
-        System.out.println("查看session---"+modules);
-        return new Page(modules , 666);
+    public Page showModules(String token) throws UnsupportedEncodingException {
+//        System.out.println("查看session---"+token);
+        List<Modules> userModule = (List<Modules>) tokenUtli.uncreateToken(JSON_WEB_TOKEN.class , token).getData();
+//        System.out.println("-----"+userModule);
+        return new Page(userModule , 666);
     }
 }

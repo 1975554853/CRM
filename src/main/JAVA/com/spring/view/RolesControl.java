@@ -1,4 +1,5 @@
 package com.spring.view;
+import com.spring.annotation.Annotation;
 import com.spring.page.Page;
 import com.spring.pojo.Roles;
 import com.spring.service.RolesService;
@@ -20,6 +21,7 @@ public class RolesControl {
      * @param limit
      * @return
      */
+    @Annotation(desc = "进行查询角色的权限")
     @GetMapping(value = "selectRoles",name = "查询角色")
     public Page selectRoles(Integer page,Integer limit){
         return rolesService.selectRoles(page,limit);
@@ -31,6 +33,7 @@ public class RolesControl {
      * @param roles
      * @return
      */
+    @Annotation(desc = "进行创建角色的权限")
     @GetMapping(value = "insertRoles", name = "创建角色")
     public boolean insertRoles(Roles roles){
         Integer i = rolesService.insertRoles(roles);
@@ -43,6 +46,7 @@ public class RolesControl {
     /**
      * 查询一下里面是否有相同的角色名字
      */
+    @Annotation(desc = "进行查询角色的权限")
     @RequestMapping(value = "selectName",name = "查询名字")
     public boolean selectName(String name){
         return rolesService.selectName(name);
@@ -50,6 +54,7 @@ public class RolesControl {
     /**
      * 删除角色
      */
+    @Annotation(desc = "进行删除角色的权限")
      @GetMapping(value ="deleteRole",name = "删除角色")
      public boolean deleteRole(String name){
          System.out.println(name);
@@ -63,6 +68,7 @@ public class RolesControl {
     /**
      * 编辑角色名称
      */
+    @Annotation(desc = "进行编辑角色的权限")
     @GetMapping(value = "updateName",name = "编辑角色名称")
     public boolean updateName(String newname,String oldname){
         return rolesService.updateName(newname,oldname);
