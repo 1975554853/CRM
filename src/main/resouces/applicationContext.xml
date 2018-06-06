@@ -59,26 +59,26 @@
     <!--&lt;!&ndash;//切面&ndash;&gt;-->
     <!--<bean class="com.beiyou.util.LogAsp" id="logAsp"/>-->
 
-    <!--<aop:config>-->
-<!--&lt;!&ndash;//切入点&ndash;&gt;-->
-        <!--<aop:pointcut id="stuService" expression="execution(* com.spring.service.*(..))"/>-->
+    <aop:config>
+<!--//切入点-->
+        <aop:pointcut id="stuService" expression="execution(* com.spring.service.*(..))"/>
         <!--<aop:advisor advice-ref="txAdvice" pointcut-ref="stuService" order="2"/>-->
-       <!--&lt;!&ndash;切入方式&ndash;&gt;-->
+       <!--切入方式-->
         <!--<aop:aspect ref="logAsp">-->
             <!--<aop:before method="before" pointcut-ref="stuService"/>-->
             <!--<aop:after-throwing method="exction" pointcut-ref="stuService"/>-->
             <!--<aop:after method="after" pointcut-ref="stuService"/>-->
         <!--</aop:aspect>-->
 
-        <!--&lt;!&ndash;<aop:pointcut id="business" expression="execution(* com.fly.bus..*(..))"/>&ndash;&gt;-->
+        <!--<aop:pointcut id="business" expression="execution(* com.fly.bus..*(..))"/>-->
 
-        <!--&lt;!&ndash;<aop:aspect ref="logAspect" >&ndash;&gt;-->
+        <!--<aop:aspect ref="logAspect" >-->
 
-        <!--&lt;!&ndash;<aop:before method="before" pointcut-ref="business"/>&ndash;&gt;-->
+        <!--<aop:before method="before" pointcut-ref="business"/>-->
 
-        <!--&lt;!&ndash;</aop:aspect>&ndash;&gt;-->
+        <!--</aop:aspect>-->
 
-    <!--</aop:config>-->
+    </aop:config>
     <tx:advice id="txAdvice">
 
     <tx:attributes>

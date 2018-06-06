@@ -29,4 +29,22 @@ public class RolesService {
     public Integer deleteRole(String name) {
         return  rolesMapper.deleteRole(name);
     }
+
+    public boolean selectName(String name) {
+        Roles roles = rolesMapper.selectName(name);
+        if (roles==null){
+            return false;
+        }else {
+            return true;
+        }
+    }
+
+    public boolean updateName(String newname,String oldname) {
+        Integer i = rolesMapper.updateName(newname,oldname);
+        if (i==0){
+            return false;
+        }else {
+            return true;
+        }
+    }
 }
