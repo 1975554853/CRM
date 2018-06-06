@@ -59,10 +59,10 @@
     <!--&lt;!&ndash;//切面&ndash;&gt;-->
     <!--<bean class="com.beiyou.util.LogAsp" id="logAsp"/>-->
 
-    <aop:config>
+    <!--<aop:config>-->
 <!--&lt;!&ndash;//切入点&ndash;&gt;-->
-        <aop:pointcut id="stuService" expression="execution(* com.spring.service.*(..))"/>
-        <aop:advisor advice-ref="txAdvice" pointcut-ref="stuService" order="2"/>
+        <!--<aop:pointcut id="stuService" expression="execution(* com.spring.service.*(..))"/>-->
+        <!--<aop:advisor advice-ref="txAdvice" pointcut-ref="stuService" order="2"/>-->
        <!--&lt;!&ndash;切入方式&ndash;&gt;-->
         <!--<aop:aspect ref="logAsp">-->
             <!--<aop:before method="before" pointcut-ref="stuService"/>-->
@@ -78,7 +78,7 @@
 
         <!--&lt;!&ndash;</aop:aspect>&ndash;&gt;-->
 
-    </aop:config>
+    <!--</aop:config>-->
     <tx:advice id="txAdvice">
 
     <tx:attributes>

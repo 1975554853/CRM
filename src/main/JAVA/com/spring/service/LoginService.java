@@ -14,4 +14,8 @@ public class LoginService {
     public Users selectOneUser(String userName , String password){
         return usersMapper.selectOneUser(userName , password);
     }
+
+    public Users selectUserName(String userName){
+        return usersMapper.selectUserName(userName);
+    }
 }

@@ -24,6 +24,10 @@
     where Id = #{id,jdbcType=VARCHAR}
   </select>
 
+  <select id="selectUserName" resultMap="BaseResultMap">
+    select * from users where LoginName = #{userName};
+  </select>
+
   <select id="selectOneUser" resultMap="BaseResultMap">
     select * from users where LoginName = #{userName} and Password = #{password}
   </select>
