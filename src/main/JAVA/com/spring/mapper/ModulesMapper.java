@@ -3,6 +3,8 @@ package com.spring.mapper;
 import com.spring.pojo.Modules;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 public interface ModulesMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -16,5 +18,5 @@ public interface ModulesMapper {
 
     int updateByPrimaryKey(Modules record);
 
-    Modules selectUserModules(@Param("userName") String userName ,@Param("password") String password);
+    List<Modules> selectUserModules(@Param("userName") String userName , @Param("password") String password);
 }

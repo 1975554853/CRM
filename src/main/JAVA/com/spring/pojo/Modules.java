@@ -70,4 +70,17 @@ public class Modules {
     public void setInt0(Integer int0) {
         this.int0 = int0;
     }
+
+    @Override
+    public String toString() {
+        return "Modules{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", parentid=" + parentid +
+                ", path='" + path + '\'' +
+                ", weight=" + weight +
+                ", ops='" + ops + '\'' +
+                ", int0=" + int0 +
+                '}';
+    }
 }
