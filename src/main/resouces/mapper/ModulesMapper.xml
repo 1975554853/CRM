@@ -117,8 +117,8 @@
 
   <select id="selectUserModules" resultMap="BaseResultMap">
     select * from modules where Id in
-	(select ModuleId from rolemodules where RoleId =
-		(select RoleId from userroles where Userid =
+	(select ModuleId from rolemodules where RoleId in
+		(select RoleId from userroles where Userid in
 			(select id from users where Loginname = #{userName} and Password = #{password})
 		)
 	)
