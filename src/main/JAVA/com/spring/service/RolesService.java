@@ -19,24 +19,33 @@ public class RolesService {
         Page p = new Page(0,pageInfo.getTotal(),pageInfo.getList());
        return p;
     }
-    public Integer insertRoles(Roles roles) {
+    public Integer insertRoles(String name,String int0,String string0) {
             UUID uuid = UUID.randomUUID();
+            Roles roles = new Roles();
             roles.setId(String.valueOf(uuid));
+            roles.setName(name);
+            roles.setInt0(Integer.parseInt(int0));
+            roles.setString0(string0);
            Integer i = rolesMapper.insert(roles);
-
        return i;
     }
     public Integer deleteRole(String name) {
-        return  rolesMapper.deleteRole(name);
+        Roles roles = selectName(name);
+        String id = roles.getId();
+        if (rolesMapper.deleteUserRole(id)!=0){
+            if (rolesMapper.deleteRoleModule(id)!=0){
+                return  rolesMapper.deleteRole(id);
+            }else {
+                return 0;
+            }
+        } else {
+            return 0;
+        }
     }
 
-    public boolean selectName(String name) {
+    public Roles selectName(String name) {
         Roles roles = rolesMapper.selectName(name);
-        if (roles==null){
-            return false;
-        }else {
-            return true;
-        }
+           return  roles;
     }
 
     public boolean updateName(String newname,String oldname) {

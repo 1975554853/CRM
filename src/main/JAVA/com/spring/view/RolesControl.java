@@ -35,13 +35,15 @@ public class RolesControl {
      */
     @Annotation(desc = "进行创建角色的权限")
     @GetMapping(value = "insertRoles", name = "创建角色")
-    public boolean insertRoles(Roles roles){
-        Integer i = rolesService.insertRoles(roles);
+    public boolean insertRoles(String name,String int0,String string0){
+        System.out.println(name+int0+string0);
+        Integer i = rolesService.insertRoles(name,int0,string0);
         if (i!=0){
             return true;
         }else {
             return false;
         }
+
     }
     /**
      * 查询一下里面是否有相同的角色名字
@@ -49,7 +51,12 @@ public class RolesControl {
     @Annotation(desc = "进行查询角色的权限")
     @RequestMapping(value = "selectName",name = "查询名字")
     public boolean selectName(String name){
-        return rolesService.selectName(name);
+        Roles roles = rolesService.selectName(name);
+        if (roles!=null) {
+            return false;
+        }else {
+            return true;
+        }
     }
     /**
      * 删除角色

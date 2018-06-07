@@ -40,4 +40,14 @@ public class Roles {
     public void setString0(String string0) {
         this.string0 = string0 == null ? null : string0.trim();
     }
+
+    @Override
+    public String toString() {
+        return "Roles{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", int0=" + int0 +
+                ", string0='" + string0 + '\'' +
+                '}';
+    }
 }

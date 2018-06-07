@@ -22,9 +22,13 @@ public interface RolesMapper {
 
     List<Roles> selectRoles();
 
-    Integer deleteRole(String name);
+    Integer deleteRole(String id);
 
     Roles selectName(String name);
 
     Integer updateName(@Param("newname") String newname, @Param("oldname") String oldname);
+
+    Integer deleteRoleModule(String id);
+
+    Integer deleteUserRole(String id);
 }
