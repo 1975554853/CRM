@@ -30,6 +30,7 @@ public interface UsersMapper {
 
     Integer insertUsers(Users users);
 
+    Integer deleteUserRolesId(String id);
     Integer deleteUsersLoginname(String loginname);
 
     Integer updateUsers(@Param("loginname") String loginname,@Param("protectemail")String protectemail,@Param("protectmtel")String protectmtel);
@@ -37,4 +38,9 @@ public interface UsersMapper {
     Integer updateUsersPassword(String loginname);
 
     Integer IsLockoutUsers(@Param("loginname") String loginname,@Param("IsLockout")String IsLockout);
+
+    List<String> selectRoles();
+    List<String> selectUserRoles(@Param("loginname")String loginname);
+    Integer insertUserRole(@Param("id")String id,@Param("loginname") String loginname,@Param("rolename")String rolename);
+    Integer deleteUserRole(@Param("loginname") String loginname,@Param("rolename")String rolename);
 }
