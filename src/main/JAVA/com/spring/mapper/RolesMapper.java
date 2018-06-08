@@ -31,4 +31,6 @@ public interface RolesMapper {
     Integer deleteRoleModule(String id);
 
     Integer deleteUserRole(String id);
+
+    void deleteRolePermission(String id);
 }

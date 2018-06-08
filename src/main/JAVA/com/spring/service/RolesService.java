@@ -32,23 +32,17 @@ public class RolesService {
     public Integer deleteRole(String name) {
         Roles roles = selectName(name);
         String id = roles.getId();
-        if (rolesMapper.deleteUserRole(id)!=0){
-            if (rolesMapper.deleteRoleModule(id)!=0){
-                return  rolesMapper.deleteRole(id);
-            }else {
-                return 0;
-            }
-        } else {
-            return 0;
-        }
+        rolesMapper.deleteUserRole(id);
+        rolesMapper.deleteRoleModule(id);
+        rolesMapper.deleteRolePermission(id);
+        return rolesMapper.deleteRole(id);
     }
-
     public Roles selectName(String name) {
         Roles roles = rolesMapper.selectName(name);
            return  roles;
     }
 
-    public boolean updateName(String newname,String oldname) {
+    public boolean updateName(String newname,String oldname){
         Integer i = rolesMapper.updateName(newname,oldname);
         if (i==0){
             return false;

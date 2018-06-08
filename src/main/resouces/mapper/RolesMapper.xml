@@ -97,4 +97,7 @@
   <delete id="deleteUserRole" parameterType="java.lang.String">
     delete from userroles where RoleId=#{id}
   </delete>
+  <delete id="deleteRolePermission" parameterType="java.lang.String">
+    delete from rolepermissiontb where RoleId=#{id}
+  </delete>
 </mapper>

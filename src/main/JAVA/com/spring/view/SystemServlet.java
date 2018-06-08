@@ -1,4 +1,4 @@
-package com.spring.service;
+package com.spring.view;
 
 import com.spring.pojo.Permissiontb;
 import com.spring.service.SystemService;
