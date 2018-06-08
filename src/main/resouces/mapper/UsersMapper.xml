@@ -178,6 +178,9 @@
         (#{id}, #{loginname}, #{password},"否", now(), 0,null, #{protectemail}, #{protectmtel}, now())
     </insert>
 
+  <delete id="deleteUserRolesId">
+  delete from userroles where UserId=#{id}
+  </delete>
     <delete id="deleteUsersLoginname">
         delete from users where LoginName=#{loginname}
     </delete>
@@ -197,8 +200,30 @@
     </update>
 
     <update id="IsLockoutUsers">
-        update users set IsLockout=#{IsLockout} where LoginName=#{loginname}
+        update users set IsLockout=#{IsLockout}
+        <if test="IsLockout=='是'.toString()">,LockTime=now()</if>
+         where LoginName=#{loginname}
     </update>
+
+  <select id="selectRoles" resultType="java.lang.String">
+    select  Name from roles
+  </select>
+  <select id="selectUserRoles" resultType="java.lang.String">
+    select  Name from roles where Id in(
+    select RoleId from userroles where UserId =(
+    select users.Id from users where LoginName=#{loginname}
+    ))
+  </select>
+  <insert id="insertUserRole">
+    insert into userroles values(#{id},
+    (select Id from users where LoginName=#{loginname}),
+    (select Id from roles where Name=#{rolename}))
+  </insert>
+  <delete id="deleteUserRole">
+    delete from userroles where
+    UserId=(select Id from users where LoginName=#{loginname}) and
+    RoleId=(select Id from roles where Name=#{rolename})
+  </delete>
 
 
 </mapper>
