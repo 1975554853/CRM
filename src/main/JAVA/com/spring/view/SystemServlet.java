@@ -23,6 +23,7 @@ public class SystemServlet {
 
     @Autowired
     private RequestMappingHandlerMapping requestMappingHandlerMapping;
+
     @Autowired
     private SystemService systemService;
 

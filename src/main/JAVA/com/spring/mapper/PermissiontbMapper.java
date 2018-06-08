@@ -22,4 +22,6 @@ public interface PermissiontbMapper {
     Integer batchInsert(List<Permissiontb> list);
 
     List<String> queryPermissionByUserID(Integer userid);
+
+    List<Permissiontb> selectPermissionAll();
 }

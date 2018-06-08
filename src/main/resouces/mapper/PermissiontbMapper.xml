@@ -113,4 +113,8 @@
       in (select roleId from userroletb where userId = #{userid}))
   </select>
 
+  <select id="selectPermissionAll" resultMap="BaseResultMap">
+    select * from permissiontb
+  </select>
+
 </mapper>
