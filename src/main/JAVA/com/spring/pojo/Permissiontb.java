@@ -13,6 +13,16 @@ public class Permissiontb {
 
     private Date permissionlastupdatetime;
 
+    private String isHava;
+
+    public String getIsHava() {
+        return isHava;
+    }
+
+    public void setIsHava(String isHava) {
+        this.isHava = isHava;
+    }
+
     public Integer getPermissionid() {
         return permissionid;
     }
@@ -24,6 +34,7 @@ public class Permissiontb {
     public String getPermissionvalue() {
         return permissionvalue;
     }
+
 
     public void setPermissionvalue(String permissionvalue) {
         this.permissionvalue = permissionvalue == null ? null : permissionvalue.trim();

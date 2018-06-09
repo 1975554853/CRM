@@ -117,4 +117,10 @@
     select * from permissiontb
   </select>
 
+  <select id="selectRolePermission" resultMap="BaseResultMap">
+    select * from permissiontb where permissionId in(
+    select rolepermissiontb.permissionId from rolepermissiontb where roleId=#{roleid}
+    )
+  </select>
+
 </mapper>

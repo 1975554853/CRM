@@ -24,4 +24,6 @@ public interface PermissiontbMapper {
     List<String> queryPermissionByUserID(Integer userid);
 
     List<Permissiontb> selectPermissionAll();
+
+    List<Permissiontb> selectRolePermission(String roleid);
 }

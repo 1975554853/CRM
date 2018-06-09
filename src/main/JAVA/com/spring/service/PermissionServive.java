@@ -18,4 +18,20 @@ public class PermissionServive {
         l=mapper.selectPermissionAll();
         return l;
     }
+
+    public List<Permissiontb> selectRolePermission(String roleid){
+        List<Permissiontb> permissiontbs=mapper.selectPermissionAll();
+        List<Permissiontb> rolepermissiontbs=mapper.selectRolePermission(roleid);
+
+        for(Permissiontb rp:rolepermissiontbs){
+            for (Permissiontb p:permissiontbs){
+                if(rp.getPermissionvalue().equals(p.getPermissionvalue())){
+                    p.setIsHava("已拥有");
+                }else{
+                    p.setIsHava("未拥有");
+                }
+            }
+        }
+        return permissiontbs;
+    }
 }
