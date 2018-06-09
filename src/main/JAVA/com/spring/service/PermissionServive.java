@@ -24,13 +24,14 @@ public class PermissionServive {
         List<Permissiontb> rolepermissiontbs=mapper.selectRolePermission(roleid);
 
         for (Permissiontb p:permissiontbs){
+            String isHave="未拥有";
             for(Permissiontb rp:rolepermissiontbs){
                 if(rp.getPermissionvalue().equals(p.getPermissionvalue())){
-                    p.setIsHava("已拥有");
-                }else{
-                    p.setIsHava("未拥有");
+                    isHave="已拥有";
+                    break;
                 }
             }
+            p.setIsHava(isHave);
         }
         return permissiontbs;
     }
