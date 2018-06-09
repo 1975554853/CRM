@@ -34,4 +34,18 @@ public class PermissionServive {
         }
         return permissiontbs;
     }
+
+    public Integer insertRolePermission(String roleid,String permissionid){
+        Integer n=0;
+        n=mapper.insertRolePermission(roleid,permissionid);
+        return n;
+    }
+
+    public Integer deleteRolePermission(String roleid,String permissionid){
+        Integer n=0;
+        n=mapper.deleteRolePermission(roleid,permissionid);
+        return n;
+    }
+
+
 }

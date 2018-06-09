@@ -123,4 +123,12 @@
     )
   </select>
 
+  <insert id="insertRolePermission">
+    insert into rolepermissiontb values (null,#{roleid},#{permissionid},now())
+  </insert>
+
+  <delete id="deleteRolePermission">
+    delete from rolepermissiontb where roleId=#{roleid} and permissionId=#{permissionid}
+  </delete>
+
 </mapper>
