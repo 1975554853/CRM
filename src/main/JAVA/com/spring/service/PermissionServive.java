@@ -24,10 +24,10 @@ public class PermissionServive {
         List<Permissiontb> rolepermissiontbs=mapper.selectRolePermission(roleid);
 
         for (Permissiontb p:permissiontbs){
-            String isHave="未拥有";
+            Integer isHave = 2;
             for(Permissiontb rp:rolepermissiontbs){
                 if(rp.getPermissionvalue().equals(p.getPermissionvalue())){
-                    isHave="已拥有";
+                    isHave=3;
                     break;
                 }
             }
@@ -35,6 +35,7 @@ public class PermissionServive {
         }
         return permissiontbs;
     }
+//分配
 
     public Integer insertRolePermission(String roleid,String permissionid){
         Integer n=0;

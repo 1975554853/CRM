@@ -13,13 +13,13 @@ public class Permissiontb {
 
     private Date permissionlastupdatetime;
 
-    private String isHava;
+    private Integer isHava;
 
-    public String getIsHava() {
+    public Integer getIsHava() {
         return isHava;
     }
 
-    public void setIsHava(String isHava) {
+    public void setIsHava(Integer isHava) {
         this.isHava = isHava;
     }
 
