@@ -1,6 +1,7 @@
 package com.spring.auth;
 import com.spring.auth.Exception.NOLoginException;
 import com.spring.auth.Exception.NoPermissionException;
+import com.spring.auth.token.JSON_WEB_TOKEN;
 import com.spring.auth.token.Token;
 import com.spring.pojo.Modules;
 import org.springframework.web.method.HandlerMethod;
@@ -8,6 +9,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 public class LoginInInterceptor extends HandlerInterceptorAdapter {
@@ -18,8 +20,20 @@ public class LoginInInterceptor extends HandlerInterceptorAdapter {
         if(url.matches(SystemUtil.STATIC_NO_PERMISSION_PATH)){
             return true;
         }
-        HttpSession session = request.getSession();
-        List<String> userPermission = (List<String>) session.getAttribute(SystemUtil.USER_MODULES);
+        String token=request.getParameter("token");
+        //前端没传token
+        if(token==null){
+            return true;
+        }
+
+        JSON_WEB_TOKEN tokens=null;
+        try {
+            tokens = new Token().uncreateToken(JSON_WEB_TOKEN.class,token);
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        System.out.println(tokens.toString());
+        List<String> userPermission=tokens.getPermissions();
         if(userPermission==null){
             throw new NOLoginException("请先登陆");
         }

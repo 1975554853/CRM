@@ -3,10 +3,12 @@ package com.spring.view;
 import com.spring.auth.token.JSON_WEB_TOKEN;
 import com.spring.auth.token.Token;
 import com.spring.mapper.ModulesMapper;
+import com.spring.mapper.PermissiontbMapper;
 import com.spring.page.Page;
 import com.spring.pojo.Modules;
 import com.spring.pojo.Users;
 import com.spring.service.LoginService;
+import com.spring.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,9 +23,14 @@ public class LoginControl {
 
     @Autowired
     LoginService loginService;
+    @Autowired
+    UsersService usersService;
 
     @Autowired
     ModulesMapper modulesMapper;
+
+    @Autowired
+    PermissiontbMapper permissiontbMapper;
 
     @Autowired
     HttpSession session;
@@ -62,6 +69,9 @@ public class LoginControl {
 //        session.setAttribute(SystemUtil.USER_MODULES , modules);
 
         JSON_WEB_TOKEN json_web_token = new JSON_WEB_TOKEN();
+        json_web_token.setId(users.getId());
+        json_web_token.setRoles(usersService.selectUserRoles(users.getLoginname()));
+        json_web_token.setPermissions(loginService.selectUserPermission(users.getId()));
         json_web_token.setData(modules);
 //        System.out.println(">>>>"+modules);
 

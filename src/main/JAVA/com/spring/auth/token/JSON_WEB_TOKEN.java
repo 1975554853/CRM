@@ -3,7 +3,7 @@ package com.spring.auth.token;
 import java.util.List;
 
 public class JSON_WEB_TOKEN {
-    private Integer id;
+    private String id;
     private List<String> roles;
     private List<String> permissions;
     private Object data;
@@ -19,17 +19,17 @@ public class JSON_WEB_TOKEN {
     public JSON_WEB_TOKEN() {
     }
 
-    public JSON_WEB_TOKEN(Integer id, List<String> permissions) {
+    public JSON_WEB_TOKEN(String id, List<String> permissions) {
         this.id = id;
         this.permissions = permissions;
     }
 
-    public Integer getId() {
+    public String getId() {
 
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -47,5 +47,15 @@ public class JSON_WEB_TOKEN {
 
     public void setPermissions(List<String> permissions) {
         this.permissions = permissions;
+    }
+
+    @Override
+    public String toString() {
+        return "JSON_WEB_TOKEN{" +
+                "id=" + id +
+                ", roles=" + roles +
+                ", permissions=" + permissions +
+                ", data=" + data +
+                '}';
     }
 }

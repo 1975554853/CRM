@@ -8,7 +8,7 @@ public class SystemUtil {
     public static String USER_MODULES = "userModules";
     public static final String STATIC_NO_PERMISSION_PATH =
 
-            ".*/((login)|(logout)|(hello)|(mvc)|(app)|(weixin)|(static)|(main)|(websocket)).*";
+            ".*/((toLog)|(per)).*";
 
 
     public static String getMethodOfPermission(HandlerMethod handler) {

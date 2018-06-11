@@ -1,5 +1,6 @@
 package com.spring.mapper;
 
+import com.spring.pojo.Systemlogmessage;
 import com.spring.pojo.Users;
 import org.apache.ibatis.annotations.Param;
 
@@ -21,6 +22,8 @@ public interface UsersMapper {
     Users selectUserName(@Param("userName") String userName);
 
     Integer updateUserPsdWrongTime(@Param("userName")String userName,@Param("IsLockout") String IsLockout,@Param("PsdWrongTime")Integer PsdWrongTime);
+
+    List<String> selectUserPermission(String userid);
 
     List<Users> selectUsersCondition(@Param("loginname") String loginname,@Param("starttime") String starttime,
                                      @Param("endtime") String endtime,@Param("islockout") String islockout,
@@ -45,4 +48,7 @@ public interface UsersMapper {
     List<String> selectUserRoles(@Param("loginname")String loginname);
     Integer insertUserRole(@Param("id")String id,@Param("loginname") String loginname,@Param("rolename")String rolename);
     Integer deleteUserRole(@Param("loginname") String loginname,@Param("rolename")String rolename);
+
+    //日志
+    Integer insertlogmessage(Systemlogmessage systemlogmessage);
 }

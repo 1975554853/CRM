@@ -34,6 +34,12 @@
     where LoginName=#{userName}
   </update>
 
+  <select id="selectUserPermission" resultType="java.lang.String">
+    select permissionValue from permissiontb where permissionId in
+    (select permissionId from rolepermissiontb where roleId in
+    (select userroles.RoleId from userroles where UserId=#{userid}))
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from users
     where Id = #{id,jdbcType=VARCHAR}
@@ -232,5 +238,11 @@
     RoleId=(select Id from roles where Name=#{rolename})
   </delete>
 
+  <!--日志-->
+  <insert id="insertlogmessage" parameterType="com.spring.pojo.Systemlogmessage">
+    insert into systemlogmessage values
+         (null,#{systemLogMessage_Name},#{systemLogMessage_Roles},#{systemLogMessag_Method},#{systemLogMessage_Description},
+         #{systemLogMessage_Params},#{systemLogMessage_StartTime},#{systemLogMessage_Time},#{systemLogMessage_Successful},#{systemLogMessage_Exception})
+    </insert>
 
 </mapper>
