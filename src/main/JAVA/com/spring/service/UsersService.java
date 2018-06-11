@@ -142,4 +142,10 @@ public class UsersService {
         return n;
     }
 
+    public Page selectAllStudent(Integer page, Integer limit){
+        PageHelper.startPage(page , limit);
+        PageInfo pi = new PageInfo(mapper.selectAllUser());
+        return new Page(pi , 0);
+    }
+
 }

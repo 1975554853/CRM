@@ -91,6 +91,10 @@
   <update id="updateName" parameterType="java.lang.String">
     update roles set name =#{newname}where Name =#{oldname}
   </update>
+
+  <select id="selectRolesName" resultMap="BaseResultMap">
+    select * from roles
+  </select>
   <delete id="deleteRoleModule" parameterType="java.lang.String">
     delete from rolemodules where RoleId=#{id}
   </delete>

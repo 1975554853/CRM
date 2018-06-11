@@ -1,7 +1,5 @@
 package com.spring.view;
 
-import com.spring.annotation.Annotation;
-import com.spring.auth.SystemUtil;
 import com.spring.auth.token.JSON_WEB_TOKEN;
 import com.spring.auth.token.Token;
 import com.spring.mapper.ModulesMapper;
@@ -33,13 +31,14 @@ public class LoginControl {
     @Autowired
     Token tokenUtli;
 
+    int mistake = 0;
+
     /**
      * 进行用户的登陆
      * @param userName 前台传入的用户名
      * @param passWord 前台传入的棉麻
      * @return 回馈给前台的信息
      */
-    @Annotation(desc = "进行登陆的权限")
     @RequestMapping(value = "/login" , method = RequestMethod.POST)
     public Page login(@RequestParam("userName") String userName ,@RequestParam("passWord") String passWord) throws UnsupportedEncodingException {
         Users users = loginService.selectUserName(userName);

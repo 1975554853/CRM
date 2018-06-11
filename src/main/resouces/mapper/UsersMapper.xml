@@ -175,6 +175,10 @@
         select * from users where  LoginName=#{loginname}
     </select>
 
+    <select id="selectAllUser" resultMap="BaseResultMap">
+        select * from users
+    </select>
+
     <insert id="insertUsers" parameterType="com.spring.pojo.Users">
         insert into users values
         (#{id}, #{loginname}, #{password},"否", now(), 0,null, #{protectemail}, #{protectmtel}, now())

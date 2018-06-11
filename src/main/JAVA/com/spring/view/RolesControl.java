@@ -1,6 +1,7 @@
 package com.spring.view;
 import com.spring.annotation.Annotation;
 import com.spring.page.Page;
+import com.spring.page.ToPage;
 import com.spring.pojo.Roles;
 import com.spring.service.RolesService;
 import com.sun.org.apache.regexp.internal.RE;
@@ -15,6 +16,9 @@ public class RolesControl {
     @Autowired
     RolesService rolesService;
 
+    @Autowired
+    ToPage toPage;
+
     /**
      * 查询所有的角色，并返回
      * @param page
@@ -25,7 +29,6 @@ public class RolesControl {
     @GetMapping(value = "selectRoles",name = "查询角色")
     public Page selectRoles(Integer page,Integer limit){
         return rolesService.selectRoles(page,limit);
-
     }
 
     /**
@@ -61,7 +64,7 @@ public class RolesControl {
     /**
      * 删除角色
      */
-    @Annotation(desc = "进行删除角色的权限")
+     @Annotation(desc = "进行删除角色的权限")
      @GetMapping(value ="deleteRole",name = "删除角色")
      public boolean deleteRole(String name){
          System.out.println(name);
@@ -79,6 +82,11 @@ public class RolesControl {
     @GetMapping(value = "updateName",name = "编辑角色名称")
     public boolean updateName(String newname,String oldname){
         return rolesService.updateName(newname,oldname);
+    }
+
+    @RequestMapping(value = "/getRolesName" ,method = RequestMethod.GET ,name = "查询所有角色名字")
+    public Page selectRolesName(Integer page, Integer limit){
+        return toPage.toPage(page , limit);
     }
 }
 

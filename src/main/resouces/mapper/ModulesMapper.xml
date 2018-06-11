@@ -124,6 +124,30 @@
 	)
   </select>
 
+  <select id="selectRolesModules" resultMap="BaseResultMap">
+    select * from modules where Id not in
+	(select RoleId from rolemodules where RoleId in
+		(select Id from roles where Name = #{roleName})
+		)
+	and ParentId = 0
+  </select>
+
+  <select id="selectChildModuleById" resultMap="BaseResultMap">
+    select Name from modules where ParentId = #{moduleId}
+  </select>
+
+  <select id="selectByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from modules
+    where name = #{name}
+  </select>
+
+  <insert id="insertRole" >
+    insert into userroles (Id,UserId,RoleId) values
+    (rand(),#{selectUserId},#{nameId})
+  </insert>
+
 
 
 

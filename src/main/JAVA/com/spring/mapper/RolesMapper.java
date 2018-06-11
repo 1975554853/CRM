@@ -1,5 +1,6 @@
 package com.spring.mapper;
 
+import com.spring.pojo.Modules;
 import com.spring.pojo.Roles;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -33,4 +34,6 @@ public interface RolesMapper {
     Integer deleteUserRole(String id);
 
     void deleteRolePermission(String id);
+
+    List<Roles> selectRolesName();
 }

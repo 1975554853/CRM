@@ -28,6 +28,8 @@ public interface UsersMapper {
 
     List<Users> selectUsersLoginname(String loginname);
 
+    List<Users> selectAllUser();
+
     Integer insertUsers(Users users);
 
     Integer deleteUserRolesId(String id);

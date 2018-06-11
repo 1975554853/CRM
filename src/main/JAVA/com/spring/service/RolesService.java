@@ -50,4 +50,13 @@ public class RolesService {
             return true;
         }
     }
+
+    /**
+     * 查询所有角色名
+     * @return 所有角色名
+     */
+    public List<Roles> selectRolesName(){
+        return rolesMapper.selectRolesName();
+    }
+
 }

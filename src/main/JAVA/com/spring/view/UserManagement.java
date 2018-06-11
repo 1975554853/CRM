@@ -5,10 +5,7 @@ import com.spring.page.Page;
 import com.spring.pojo.Users;
 import com.spring.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
@@ -264,6 +261,11 @@ public class UserManagement {
             pages.setMsg("删除用户角色失败");
             return pages;
         }
+    }
+
+    @RequestMapping(value = "/selectAllUsers" , method = RequestMethod.GET)
+    public Page selectAllUsers(Integer page, Integer limit){
+        return usersService.selectAllStudent(page , limit);
     }
 
 }
