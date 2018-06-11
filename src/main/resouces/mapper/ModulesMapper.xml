@@ -170,4 +170,7 @@
   <insert id="insertAdminAppendModule" parameterType="java.lang.Integer">
         insert into rolemodules (roleId, moduleId) values (1 , #{moduleid})
     </insert>
+  <insert id="insertRoleModule">
+    insert into rolemodules  values (#{uuid},#{role},#{module})
+  </insert>
 </mapper>

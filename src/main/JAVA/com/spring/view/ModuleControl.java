@@ -23,12 +23,12 @@ public class ModuleControl {
     public List selectModuleByNotRoleId(String role){
         return  moduleService.selectModuleByNotRoleId(role);
     }
-    @GetMapping(value = "insertAdminAppendModule",name = "插入模块")
-    public Integer insertAdminAppendModule(Integer module){
-        return  moduleService.insertAdminAppendModule(module);
+    @GetMapping(value = "insertRoleModule",name = "插入模块")
+    public boolean insertRoleModule(Integer role,Integer[] module){
+        return  moduleService.insertRoleModule(role,module);
     }
     @GetMapping(value = "deleteRoleModuleByModuleAndRole",name = "删除模块")
-    public Integer deleteRoleModuleByModuleAndRole(Integer role,Integer module){
+    public boolean deleteRoleModuleByModuleAndRole(Integer role,Integer[] module){
         return  moduleService.deleteRoleModuleByModuleAndRole(role,module);
     }
 }

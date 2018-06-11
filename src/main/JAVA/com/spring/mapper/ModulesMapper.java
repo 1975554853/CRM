@@ -29,6 +29,7 @@ public interface ModulesMapper {
     List<Modules> selectModuleByNotRoleId(String role);
     Integer deleteRoleModuleByModuleAndRole(@Param("module") Integer module,@Param("role") Integer role);
     Integer insertAdminAppendModule(@Param("module") Integer module);
+    Integer insertRoleModule(@Param("uuid")String uuid,@Param("role")Integer role,@Param("module") Integer module);
 
     List<Modules> selectChildModuleById(Integer moduleId);
 }
