@@ -16,11 +16,11 @@ public class ModuleControl {
     ModuleService moduleService;
 
     @GetMapping(value = "selectModuleByRoleId",name = "查找包含的模块")
-    public List selectModuleByRoleId(Integer role){
+    public List selectModuleByRoleId(String role){
         return  moduleService.selectModuleByRoleId(role);
     }
     @GetMapping(value = "selectModuleByNotRoleId",name = "查找不包含的模块")
-    public List selectModuleByNotRoleId(Integer role){
+    public List selectModuleByNotRoleId(String role){
         return  moduleService.selectModuleByNotRoleId(role);
     }
     @GetMapping(value = "insertAdminAppendModule",name = "插入模块")

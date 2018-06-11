@@ -128,13 +128,13 @@
 
 
 
-  <select id="selectModuleByRoleId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectModuleByRoleId" parameterType="java.lang.String" resultMap="BaseResultMap">
     select * from modules m where m.Id in
     (
       select r.moduleId from rolemodules r where r.roleId = #{role}
     )
   </select>
-  <select id="selectModuleByNotRoleId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectModuleByNotRoleId" parameterType="java.lang.String" resultMap="BaseResultMap">
             select * from modules m where m.Id not in
     (
       select r.moduleId from rolemodules r where r.roleId = #{role}

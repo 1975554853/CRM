@@ -19,8 +19,8 @@ public interface ModulesMapper {
     int updateByPrimaryKey(Modules record);
 
     List<Modules> selectUserModules(@Param("userName") String userName , @Param("password") String password);
-    List<Modules> selectModuleByRoleId(Integer role);
-    List<Modules> selectModuleByNotRoleId(Integer role);
+    List<Modules> selectModuleByRoleId(String role);
+    List<Modules> selectModuleByNotRoleId(String role);
     Integer deleteRoleModuleByModuleAndRole(@Param("module") Integer module,@Param("role") Integer role);
     Integer insertAdminAppendModule(@Param("module") Integer module);
 }

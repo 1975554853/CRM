@@ -11,10 +11,10 @@ import java.util.List;
 public class ModuleService {
     @Autowired
     ModulesMapper mapper;
-    public List<Modules> selectModuleByRoleId(Integer role){
+    public List<Modules> selectModuleByRoleId(String role){
         return  mapper.selectModuleByRoleId(role);
     }
-    public List<Modules> selectModuleByNotRoleId(Integer role){
+    public List<Modules> selectModuleByNotRoleId(String role){
         return  mapper.selectModuleByNotRoleId(role);
     }
     public Integer insertAdminAppendModule(Integer module){
