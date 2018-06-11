@@ -33,8 +33,6 @@ public class LogAsp {
             }
         }
 
-
-
         Systemlogmessage systemlogmessage=new Systemlogmessage();
         long starttime=System.currentTimeMillis();
         try {
