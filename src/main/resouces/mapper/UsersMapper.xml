@@ -31,6 +31,7 @@
   <update id="updateUserPsdWrongTime">
     update users set IsLockout=#{IsLockout},PsdWrongTime=#{PsdWrongTime}
     <if test="IsLockout=='是'.toString()">,LockTime=now()</if>
+    <if test="PsdWrongTime==0">,LastLoginTime=now()</if>
     where LoginName=#{userName}
   </update>
 

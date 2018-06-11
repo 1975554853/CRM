@@ -32,7 +32,7 @@ public class LoginInInterceptor extends HandlerInterceptorAdapter {
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-        System.out.println(tokens.toString());
+
         List<String> userPermission=tokens.getPermissions();
         if(userPermission==null){
             throw new NOLoginException("请先登陆");

@@ -1,5 +1,7 @@
 package com.spring.annotation;
 
+import com.spring.auth.token.JSON_WEB_TOKEN;
+import com.spring.auth.token.Token;
 import com.spring.mapper.UsersMapper;
 import com.spring.pojo.Systemlogmessage;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -59,8 +61,8 @@ public class LogAsp {
         //时间格式
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 
-        systemlogmessage.setSystemLogMessage_Name("root");
-        systemlogmessage.setSystemLogMessage_Roles("人");
+        systemlogmessage.setSystemLogMessage_Name("NULL");
+        systemlogmessage.setSystemLogMessage_Roles("NULL");
         systemlogmessage.setSystemLogMessag_Method(zhiname);
         systemlogmessage.setSystemLogMessage_Description(str);
         systemlogmessage.setSystemLogMessage_Params(argus);
