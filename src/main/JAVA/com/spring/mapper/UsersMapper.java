@@ -20,7 +20,7 @@ public interface UsersMapper {
 
     Users selectUserName(@Param("userName") String userName);
 
-    Users selectOneUser(@Param("userName") String userName, @Param("password") String password);
+    Integer updateUserPsdWrongTime(@Param("userName")String userName,@Param("IsLockout") String IsLockout,@Param("PsdWrongTime")Integer PsdWrongTime);
 
     List<Users> selectUsersCondition(@Param("loginname") String loginname,@Param("starttime") String starttime,
                                      @Param("endtime") String endtime,@Param("islockout") String islockout,

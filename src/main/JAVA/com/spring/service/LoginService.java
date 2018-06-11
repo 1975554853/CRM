@@ -11,11 +11,11 @@ public class LoginService {
     @Autowired
     UsersMapper usersMapper;
 
-    public Users selectOneUser(String userName , String password){
-        return usersMapper.selectOneUser(userName , password);
-    }
-
     public Users selectUserName(String userName){
         return usersMapper.selectUserName(userName);
+    }
+
+    public Integer updateUserPsdWrongTime(String userName,String IsLockout,Integer PsdWrongTime ){
+        return usersMapper.updateUserPsdWrongTime(userName,IsLockout,PsdWrongTime);
     }
 }

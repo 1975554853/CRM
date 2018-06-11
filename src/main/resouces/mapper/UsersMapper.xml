@@ -28,9 +28,11 @@
     select * from users where LoginName = #{userName};
   </select>
 
-  <select id="selectOneUser" resultMap="BaseResultMap">
-    select * from users where LoginName = #{userName} and Password = #{password}
-  </select>
+  <update id="updateUserPsdWrongTime">
+    update users set IsLockout=#{IsLockout},PsdWrongTime=#{PsdWrongTime}
+    <if test="IsLockout=='是'.toString()">,LockTime=now()</if>
+    where LoginName=#{userName}
+  </update>
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from users
@@ -201,6 +203,7 @@
 
     <update id="IsLockoutUsers">
         update users set IsLockout=#{IsLockout}
+      <if test="IsLockout=='否'.toString()">,PsdWrongTime=0</if>
         <if test="IsLockout=='是'.toString()">,LockTime=now()</if>
          where LoginName=#{loginname}
     </update>

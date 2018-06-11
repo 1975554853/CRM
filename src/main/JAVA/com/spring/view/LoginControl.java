@@ -42,18 +42,21 @@ public class LoginControl {
     @Annotation(desc = "进行登陆的权限")
     @RequestMapping(value = "/login" , method = RequestMethod.POST)
     public Page login(@RequestParam("userName") String userName ,@RequestParam("passWord") String passWord) throws UnsupportedEncodingException {
-        Users name = loginService.selectUserName(userName);
+        Users users = loginService.selectUserName(userName);
 
-        if (name == null){
+        if (users == null){
             return new Page(413 , "用户名不存在");
-        }
-
-        Users users = loginService.selectOneUser(userName , passWord);
-//        System.out.println(users);
-        if(users == null){
+        }else if(!users.getPassword().equals(passWord)){
+            if((users.getPsdwrongtime()+1)<3){
+                loginService.updateUserPsdWrongTime(userName,"否",users.getPsdwrongtime()+1);
+            }else{
+                loginService.updateUserPsdWrongTime(userName,"是",users.getPsdwrongtime()+1);
+            }
             return new Page(414 , "密码错误");
         }else if (users.getIslockout().equals("是")){
             return new Page(414 , "账户被锁定");
+        }else{
+            loginService.updateUserPsdWrongTime(userName,"否",0);
         }
 
         List<Modules> modules = modulesMapper.selectUserModules(userName , passWord);
