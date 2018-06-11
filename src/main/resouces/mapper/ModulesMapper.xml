@@ -123,4 +123,27 @@
 		)
 	)
   </select>
+
+
+
+
+
+  <select id="selectModuleByRoleId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select * from modules m where m.Id in
+    (
+      select r.moduleId from rolemodules r where r.roleId = #{role}
+    )
+  </select>
+  <select id="selectModuleByNotRoleId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+            select * from modules m where m.Id not in
+    (
+      select r.moduleId from rolemodules r where r.roleId = #{role}
+    )
+    </select>
+  <delete id="deleteRoleModuleByModuleAndRole">
+        delete from rolemodules where moduleId = #{module} and roleId = #{role}
+    </delete>
+  <insert id="insertAdminAppendModule" parameterType="java.lang.Integer">
+        insert into rolemodules (roleId, moduleId) values (1 , #{moduleid})
+    </insert>
 </mapper>
