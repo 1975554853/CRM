@@ -9,6 +9,7 @@ import com.spring.pojo.Modules;
 import com.spring.pojo.Users;
 import com.spring.service.LoginService;
 import com.spring.service.UsersService;
+import com.spring.util.PasswordEncoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -48,11 +49,15 @@ public class LoginControl {
      */
     @RequestMapping(value = "/login" , method = RequestMethod.POST)
     public Page login(@RequestParam("userName") String userName ,@RequestParam("passWord") String passWord) throws UnsupportedEncodingException {
+        PasswordEncoder passwordEncoder=new PasswordEncoder("spring","md5");
+        String newpassWord=passwordEncoder.encode(passWord,5);
+
+        newpassWord=passWord;
         Users users = loginService.selectUserName(userName);
 
         if (users == null){
             return new Page(413 , "用户名不存在");
-        }else if(!users.getPassword().equals(passWord)){
+        }else if(!users.getPassword().equals(newpassWord)){
             if((users.getPsdwrongtime()+1)<3){
                 loginService.updateUserPsdWrongTime(userName,"否",users.getPsdwrongtime()+1);
             }else{
@@ -65,15 +70,14 @@ public class LoginControl {
             loginService.updateUserPsdWrongTime(userName,"否",0);
         }
 
-        List<Modules> modules = modulesMapper.selectUserModules(userName , passWord);
-//        session.setAttribute(SystemUtil.USER_MODULES , modules);
+        List<Modules> modules = modulesMapper.selectUserModules(userName , newpassWord);
 
         JSON_WEB_TOKEN json_web_token = new JSON_WEB_TOKEN();
         json_web_token.setId(users.getId());
         json_web_token.setRoles(usersService.selectUserRoles(users.getLoginname()));
         json_web_token.setPermissions(loginService.selectUserPermission(users.getId()));
         json_web_token.setData(modules);
-//        System.out.println(">>>>"+modules);
+
 
         Page result = new Page(666 , "登陆成功");
         result.setData(tokenUtli.createToken(json_web_token , 12*60*60*1000));
@@ -82,9 +86,7 @@ public class LoginControl {
 
     @RequestMapping(value = "/index" , method = RequestMethod.POST)
     public Page showModules(String token) throws UnsupportedEncodingException {
-//        System.out.println("查看session---"+token);
         List<Modules> userModule = (List<Modules>) tokenUtli.uncreateToken(JSON_WEB_TOKEN.class , token).getData();
-//        System.out.println("-----"+userModule);
         return new Page(userModule , 666);
     }
 }

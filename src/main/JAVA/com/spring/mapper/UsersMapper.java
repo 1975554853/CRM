@@ -40,7 +40,7 @@ public interface UsersMapper {
 
     Integer updateUsers(@Param("loginname") String loginname,@Param("protectemail")String protectemail,@Param("protectmtel")String protectmtel);
 
-    Integer updateUsersPassword(String loginname);
+    Integer updateUsersPassword(@Param("loginname") String loginname,@Param("Password") String Password);
 
     Integer IsLockoutUsers(@Param("loginname") String loginname,@Param("IsLockout")String IsLockout);
 

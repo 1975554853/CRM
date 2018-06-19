@@ -4,6 +4,7 @@ import com.spring.annotation.Annotation;
 import com.spring.page.Page;
 import com.spring.pojo.Users;
 import com.spring.service.UsersService;
+import com.spring.util.PasswordEncoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -62,7 +63,11 @@ public class UserManagement {
         Users users=new Users();
         users.setId(String.valueOf(uuid));
         users.setLoginname(loginname);
-        users.setPassword(password);
+        //密码加密
+        PasswordEncoder passwordEncoder=new PasswordEncoder("spring","md5");
+        String newpassWord=passwordEncoder.encode(password,5);
+
+        users.setPassword(newpassWord);
         users.setProtectemail(protectemail);
         users.setProtectmtel(protectmtel);
         Integer n=usersService.insertUsers(users);

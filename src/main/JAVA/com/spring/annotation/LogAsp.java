@@ -4,9 +4,12 @@ import com.spring.auth.token.JSON_WEB_TOKEN;
 import com.spring.auth.token.Token;
 import com.spring.mapper.UsersMapper;
 import com.spring.pojo.Systemlogmessage;
+import com.spring.util.IpUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.springframework.beans.factory.annotation.Autowired;
+import javax.servlet.http.HttpServletRequest;
+import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Method;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
@@ -15,6 +18,9 @@ public class LogAsp {
 
     @Autowired
     UsersMapper usersMapper;
+
+    @Autowired
+    HttpServletRequest request;
 
     @Around("@annotation(com.spring.annotation.Annotation)")
     public Object around(ProceedingJoinPoint joinPoint) {
@@ -29,8 +35,13 @@ public class LogAsp {
             if (m.getName().equals(zhiname)) {
                 if (m.getParameterTypes().length == o.length) {
                     Annotation annotation = m.getAnnotation(Annotation.class);
-                    str=annotation.desc();
-                    iswrite=annotation.isWrite();
+                    if(annotation==null){
+                        str = "无注解";
+                        iswrite = true;
+                    }else {
+                        str = annotation.desc();
+                        iswrite = annotation.isWrite();
+                    }
                 }
             }
         }
@@ -60,9 +71,24 @@ public class LogAsp {
 
         //时间格式
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        //token
+        String token=request.getParameter("token");
+        String userid="无token";
+        String roles="无token";
+        if(token!=null){
+            try {
+                JSON_WEB_TOKEN tokens = new Token().uncreateToken(JSON_WEB_TOKEN.class, token);
+                userid=tokens.getId();
+                roles= String.valueOf(tokens.getRoles());
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+        }
+        String IP=IpUtils.getRemoteHost(request);
+        String SystemLogMessage_Name=userid+":"+IP;
 
-        systemlogmessage.setSystemLogMessage_Name("NULL");
-        systemlogmessage.setSystemLogMessage_Roles("NULL");
+        systemlogmessage.setSystemLogMessage_Name(SystemLogMessage_Name);
+        systemlogmessage.setSystemLogMessage_Roles(roles);
         systemlogmessage.setSystemLogMessag_Method(zhiname);
         systemlogmessage.setSystemLogMessage_Description(str);
         systemlogmessage.setSystemLogMessage_Params(argus);
@@ -70,7 +96,6 @@ public class LogAsp {
         systemlogmessage.setSystemLogMessage_Time(String.valueOf(time));
 
         Integer n= usersMapper.insertlogmessage(systemlogmessage);
-        System.out.println(n);
 
         return object;
     }

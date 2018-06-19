@@ -209,7 +209,7 @@
     </update>
 
     <update id="updateUsersPassword">
-        update users set Password="ysd123" where LoginName=#{loginname}
+        update users set Password=#{Password} where LoginName=#{loginname}
     </update>
 
     <update id="IsLockoutUsers">

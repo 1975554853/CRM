@@ -150,8 +150,6 @@
 
 
 
-
-
   <select id="selectModuleByRoleId" parameterType="java.lang.String" resultMap="BaseResultMap">
     select * from modules m where m.Id in
     (

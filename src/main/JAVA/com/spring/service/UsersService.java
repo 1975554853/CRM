@@ -6,10 +6,12 @@ import com.spring.annotation.Annotation;
 import com.spring.mapper.UsersMapper;
 import com.spring.page.Page;
 import com.spring.pojo.Users;
+import com.spring.util.PasswordEncoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Random;
 import java.util.UUID;
 
 @Service
@@ -92,7 +94,9 @@ public class UsersService {
     @Annotation(desc ="进行重置密码")
     public Integer updateUsersPassword(String loginname){
         Integer n=0;
-        n=mapper.updateUsersPassword(loginname);
+        PasswordEncoder passwordEncoder=new PasswordEncoder("spring","md5");
+        String Password=passwordEncoder.encode("123",5);
+        n=mapper.updateUsersPassword(loginname,Password);
         return n;
     }
 
