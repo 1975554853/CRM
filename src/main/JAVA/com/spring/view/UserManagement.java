@@ -130,7 +130,7 @@ public class UserManagement {
 
     /**
      * 重置密码：
-     * 重置之后的密码为ysd123
+     * 重置之后的密码为123
      * @param loginname 重置的用户的登录名
      * @return 返回数据
      */

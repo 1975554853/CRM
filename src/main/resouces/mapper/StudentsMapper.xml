@@ -533,14 +533,21 @@
     select * from students <if test="Studentname!=null">where Name=#{Studentname}</if>
   </select>
 
+  <insert id="insertStudents">
+    insert into students values (null,#{Name},#{Age},#{Sex},#{Phone},#{StuStatus},#{PerState},#{MsgSource},#{SourceUrl},#{SourceKeyWord},
+    null,null,(select AskerName from askers where Weight=(select min(Weight) from askers)),#{QQ},#{WeiXin},#{Content},now(),null,null,null,
+    null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
+  </insert>
 
+    <select id="selectaskersname" resultType="string">
+        select AskerName from askers
+    </select>
 
-
-
-
-
-
-
+    <update id="updatenewStudent">
+        update students set Name=#{Name}, Age=#{Age}, Sex=#{Sex}, Phone=#{Phone}, AskerId=#{AskerId},
+         Address=#{Address}, LearnForward=#{LearnForward}, Record=#{Record}, IsPay=#{IsPay}, Content=#{Content}
+        where Id=#{ID}
+    </update>
 
 
 
