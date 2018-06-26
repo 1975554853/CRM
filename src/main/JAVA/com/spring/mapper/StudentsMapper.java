@@ -25,11 +25,18 @@ public interface StudentsMapper {
                            @Param("SourceUrl") String SourceUrl,@Param("SourceKeyWord") String SourceKeyWord,@Param("QQ") String QQ,
                            @Param("WeiXin")String WeiXin,@Param("Content") String Content);
 
+    List<Students> selectMyStudent(@Param("list") List<String> list,@Param("name") String name,@Param("phone") String phone,
+                                   @Param("askUser") String askUser,@Param("inClassTime") String inClassTime,@Param("isReturnVisit") String isReturnVisit,
+                                   @Param("isPay") String isPay,@Param("isValid") String isValid,@Param("sex") String sex);
     List<String> selectaskersname();
 
     Integer updatenewStudent(@Param("ID") String ID,@Param("Name")String Name,@Param("Age")String Age,@Param("Sex")String Sex,
                              @Param("Phone")String Phone,@Param("AskerId")String AskerId, @Param("Address")String Address,
                              @Param("LearnForward")String LearnForward, @Param("Record")String Record,@Param("IsPay")String IsPay,
                              @Param("Content")String Content);
+
+    List<Students> selectSingleStudent(@Param("name") String name,@Param("phone") String phone,
+                                       @Param("askUser") String askUser,@Param("inClassTime") String inClassTime,@Param("isReturnVisit") String isReturnVisit,
+                                       @Param("isPay") String isPay,@Param("isValid") String isValid,@Param("sex") String sex);
 
 }

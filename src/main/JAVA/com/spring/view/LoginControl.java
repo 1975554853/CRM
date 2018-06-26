@@ -51,7 +51,7 @@ public class LoginControl {
     public Page login(@RequestParam("userName") String userName ,@RequestParam("passWord") String passWord) throws UnsupportedEncodingException {
         PasswordEncoder passwordEncoder=new PasswordEncoder("spring","md5");
         String newpassWord=passwordEncoder.encode(passWord,5);
-
+        System.out.println(userName);
         newpassWord=passWord;
         Users users = loginService.selectUserName(userName);
 
@@ -77,8 +77,6 @@ public class LoginControl {
         json_web_token.setRoles(usersService.selectUserRoles(users.getLoginname()));
         json_web_token.setPermissions(loginService.selectUserPermission(users.getId()));
         json_web_token.setData(modules);
-
-
         Page result = new Page(666 , "登陆成功");
         result.setData(tokenUtli.createToken(json_web_token , 12*60*60*1000));
         return result;

@@ -16,11 +16,13 @@ public class StudentsService {
 
     @Annotation(desc = "进行查询学生信息")
     public List<Students> selectStudent(String Studentname){
+        System.out.println(Studentname);
         if(Studentname.equals("")){
             Studentname=null;
         }
         return mapper.selectStudent(Studentname);
     }
+
 
     @Annotation(desc = "进行删除学生信息")
     public Integer deleteStudent(Integer id){

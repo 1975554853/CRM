@@ -2,11 +2,22 @@ package com.spring.page;
 
 import com.github.pagehelper.PageInfo;
 
+import java.util.List;
+
 public class Page {
     private Integer code;
     private String msg;
     private long count;
     private Object data;
+    private List<String> roles;
+
+    public List<String> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<String> roles) {
+        this.roles = roles;
+    }
 
     public Page(PageInfo pageInfo, Integer code){
         this.data = pageInfo.getList();

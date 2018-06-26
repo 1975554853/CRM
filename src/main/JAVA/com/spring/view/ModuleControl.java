@@ -23,6 +23,7 @@ public class ModuleControl {
     public List selectModuleByNotRoleId(String role){
         return  moduleService.selectModuleByNotRoleId(role);
     }
+
     @GetMapping(value = "insertRoleModule",name = "插入模块")
     public boolean insertRoleModule(Integer role,Integer[] module){
         return  moduleService.insertRoleModule(role,module);

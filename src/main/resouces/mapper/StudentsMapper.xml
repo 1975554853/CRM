@@ -532,6 +532,36 @@
   <select id="selectStudent" resultMap="BaseResultMap">
     select * from students <if test="Studentname!=null">where Name=#{Studentname}</if>
   </select>
+  <select id="selectMyStudent" resultMap="BaseResultMap" parameterType="list">
+    select * from students where AskerId in 
+    <foreach collection="list" item="item" separator="," open="(" close=")">
+      #{item}
+    </foreach>
+      <if test="name!=null and name!=''">
+          and Name=#{name}
+      </if>
+      <if test="phone!=null and phone!=''">
+          and Phone=#{phone}
+      </if>
+      <if test="askUser!=null and askUser!=''">
+          and AskerId=#{askUser}
+      </if>
+      <if test="inClassTime!=null and inClassTime!=''">
+          and InClassTime=#{inClassTime}
+      </if>
+      <if test="isReturnVisit!=null and isReturnVisit!=''">
+          and IsReturnVist=#{isReturnVisit}
+      </if>
+      <if test="isPay!=null and isPay!=''">
+          and IsPay=#{isPay}
+      </if>
+      <if test="isValid!=null and isValid!=''">
+          and IsValid=#{isValid}
+      </if>
+      <if test="sex!=null and sex!=''">
+          and Sex=#{sex}
+      </if>
+  </select>
 
   <insert id="insertStudents">
     insert into students values (null,#{Name},#{Age},#{Sex},#{Phone},#{StuStatus},#{PerState},#{MsgSource},#{SourceUrl},#{SourceKeyWord},
@@ -548,7 +578,35 @@
          Address=#{Address}, LearnForward=#{LearnForward}, Record=#{Record}, IsPay=#{IsPay}, Content=#{Content}
         where Id=#{ID}
     </update>
+  <select id="selectSingleStudent" resultMap="BaseResultMap" >
+    select * from students where 1 = 1
+      <if test="name!=null and name!=''">
+        and Name=#{name}
+      </if>
+      <if test="phone!=null and phone!=''">
+        and Phone=#{phone}
+      </if>
+      <if test="askUser!=null and askUser!=''">
+          and AskerId=#{askUser}
+      </if>
+      <if test="inClassTime!=null and inClassTime!=''">
+            and InClassTime=#{inClassTime}
+      </if>
+      <if test="isReturnVisit!=null and isReturnVisit!=''">
+            and IsReturnVist=#{isReturnVisit}
+      </if>
+      <if test="isPay!=null and isPay!=''">
+            and IsPay=#{isPay}
+      </if>
+      <if test="isValid!=null and isValid!=''">
+            and IsValid=#{isValid}
+      </if>
+      <if test="sex!=null and sex!=''">
+            and Sex=#{sex}
+      </if>
 
+
+  </select>
 
 
 

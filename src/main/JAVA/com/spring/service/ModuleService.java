@@ -19,10 +19,11 @@ public class ModuleService {
         return  mapper.selectModuleByNotRoleId(role);
     }
     public boolean insertRoleModule(Integer role,Integer[] module){
-        UUID uuid = UUID.randomUUID();
+
         Integer n = 0;
-        for (Integer i :module){
-            mapper.insertRoleModule(String.valueOf(uuid),role,i);
+        for (int i=0;i< module.length;i++){
+            UUID uuid = UUID.randomUUID();
+            mapper.insertRoleModule(String.valueOf(uuid),role,module[i]);
             n++;
         }
         if (n==module.length) {

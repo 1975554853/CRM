@@ -33,7 +33,7 @@
     </mvc:annotation-driven>
     <!--配置一下拦截器-->
     <mvc:interceptors>
-        <bean class="com.spring.auth.LoginInInterceptor"/>
+        <!--<bean class="com.spring.auth.LoginInInterceptor"/>-->
         <bean class="com.spring.auth.EncodingInterceptor"/>
     </mvc:interceptors>
 
